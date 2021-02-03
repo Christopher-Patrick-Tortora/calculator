@@ -59,7 +59,6 @@ buttons.forEach((button) => {
             operatorFlag = false;
         }
     
-
         if (button.id == "/" || button.id == "x" || button.id == "-" || button.id == "+") {
             if (operatorChosen == null) {
                 num1 = parseFloat(screen.textContent);
@@ -84,13 +83,14 @@ buttons.forEach((button) => {
         if (button.id == "=") {
             num2 = parseFloat(screen.textContent);
             screen.textContent = +operate(num1, num2, operatorChosen).toFixed(3);
-            console.log(num1 + operatorChosen + num2);
             num1 = null;
             num2 = null;
+            operatorChosen = null;
+            operatorFlag = true;
 
         }
         
-        if(button.id == "." && !screen.textContent.includes(".")){
+        if(button.id == "decimal" && !screen.textContent.includes(".")){
             screen.textContent += ".";
         }
 
