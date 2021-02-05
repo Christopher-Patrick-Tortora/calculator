@@ -1,8 +1,8 @@
 function divide(a, b) {
-    if (b == 0){
+    if (b == 0) {
         alert("HEY! THAT'S ILLEGAL!");
         location.reload();
-        return ;
+        return;
     }
     return a / b;
 }
@@ -34,6 +34,14 @@ function operate(a, b, operator) {
     }
 }
 
+function exceedsDisplay() {
+    if (screen.textContent.length > 20) {
+        alert("Display has reached its maximum size.");
+        console.log(screen.textContent);
+        location.reload();
+    }
+}
+
 const buttons = document.querySelectorAll("button");
 var screen = document.getElementById("screen");
 var num1 = "";
@@ -41,63 +49,68 @@ var num2 = "";
 var answer;
 var operatorChosen;
 var operatorFlag;
-var equalsFlag = false
+var equalsFlag;
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
+        exceedsDisplay();
         for (i = 0; i < 10; i++) {
-            if (button.id == i) {
+            if (equalsFlag && button.id == i) {
+                screen.textContent = i;
+                equalsFlag = false;
+            }
+            else if (button.id == i) {
                 screen.textContent += i;
             }
             if (operatorFlag && button.id == 0) {
                 screen.textContent = 0;
-                
+
             }
-            else if(operatorFlag){
+            else if (operatorFlag) {
                 screen.textContent = null;
+
             }
             operatorFlag = false;
         }
-    
-        if (button.id == "/" || button.id == "x" || button.id == "-" || button.id == "+") {
-            if (operatorChosen == null) {
-                num1 = parseFloat(screen.textContent);
-            }
-            else {
+        switch (button.id) {
+            case '/':
+            case 'x':
+            case '-':
+            case '+':
+                if (operatorChosen == null) {
+                    num1 = parseFloat(screen.textContent);
+                }
+                else {
+                    num2 = parseFloat(screen.textContent);
+                    screen.textContent = +operate(num1, num2, operatorChosen).toFixed(3);
+                    num1 = operate(num1, num2, operatorChosen);
+                }
+                operatorChosen = button.id;
+                operatorFlag = true;
+                break;
+            case 'clear':
+                num1 = null;
+                num2 = null;
+                operatorChosen = null;
+                screen.textContent = null;
+                operatorFlag = false;
+                break;
+            case 'equal':
                 num2 = parseFloat(screen.textContent);
                 screen.textContent = +operate(num1, num2, operatorChosen).toFixed(3);
-                num1 = operate(num1, num2, operatorChosen);
-            }
-            operatorChosen = button.id;
-            operatorFlag = true;
+                num1 = +operate(num1, num2, operatorChosen).toFixed(3);
+                num2 = null;
+                operatorChosen = null;
+                equalsFlag = true;
+                break;
+            case 'delete':
+                screen.textContent = screen.textContent.slice(0, -1);
+                break;
+            case 'decimal':
+                if (!screen.textContent.includes(".")) {
+                    screen.textContent += ".";
+                }
         }
-
-        if (button.id == "clear") {
-            num1 = null;
-            num2 = null;
-            operatorChosen = null;
-            screen.textContent = null;
-            operatorFlag = false;
-        }
-
-        if (button.id == "=") {
-            num2 = parseFloat(screen.textContent);
-            screen.textContent = +operate(num1, num2, operatorChosen).toFixed(3);
-            num1 = null;
-            num2 = null;
-            operatorChosen = null;
-            operatorFlag = true;
-
-        }
-        
-        if(button.id == "decimal" && !screen.textContent.includes(".")){
-            screen.textContent += ".";
-        }
-
-        if(button.id == "delete"){
-            screen.textContent = screen.textContent.slice(0,-1);
-        }
-            
     })
 })
 
