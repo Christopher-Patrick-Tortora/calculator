@@ -1,0 +1,89 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 270px;
+    padding: 30px 0px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    font-family: Inter;
+    
+}
+
+.display {
+    height: 100px;
+    padding: 0px 20px;
+    color: white;
+}
+
+p {
+    width: 100%;
+    height: 50%;
+    margin: 0;
+}
+
+.arithmetic {
+    display: flex;
+    justify-content: start;
+}
+
+.answer {
+    display: flex;
+    justify-content: start;
+}
+
+.inputs {
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 0;
+}
+
+button:hover {
+    filter: brightness(1.2);
+    font-size: large;
+}
+
+button:active {
+    filter: brightness(1.2);
+    font-size: small;
+}
+
+
+
+.orange {
+    background-color: rgba(246,153,6,255);
+    color: white;
+}
+
+.lightgray {
+    background-color: rgba(159,159,159,255);
+    color: rgb(0, 0, 0);
+}
+
+.gray {
+    background-color: rgba(49,49,49,255);
+    color: rgb(255, 255, 255);
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(./assets/Inter/static/Inter-Medium.ttf);
+}
+
+
+
