@@ -29,13 +29,14 @@ p {
 }
 
 .arithmetic {
+    color: white;
     display: flex;
     justify-content: start;
 }
 
 .answer {
     display: flex;
-    justify-content: start;
+    justify-content: end;
 }
 
 .inputs {
