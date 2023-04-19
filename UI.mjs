@@ -25,7 +25,8 @@ const UI = () => {
                     arithmetic.textContent += button.id
                     
                 } 
-                else if(button.classList.contains('operator')){
+                else if(button.classList.contains('operator') &&
+                        button.id !== '()'){
                     if(arithmetic.textContent){
                         arithmetic.textContent += button.id
                         calculator.pushInput(operand)
@@ -41,10 +42,17 @@ const UI = () => {
                 else if(button.id === 'ac'){
                     allClear()
                     calculator.allClear()
+                    operand = ''
+
                 }
                 else if(button.id === 'del'){
                     del()
-                
+                    console.log(arithmetic.textContent)
+                    if(arithmetic.textContent !== '') calculator.del()
+                    operand = ''
+                }
+                else if(button.id === '()'){
+                    console.log(arithmetic.textContent)
                 }
         
             })
