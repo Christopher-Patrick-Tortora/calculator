@@ -22,6 +22,10 @@ main {
     color: white;
 }
 
+.display > * {
+    overflow:auto;
+}
+
 p {
     width: 100%;
     height: 50%;
